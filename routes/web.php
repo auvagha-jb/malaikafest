@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//-----------------------------------------------AUTHENTICATION---------------------------------------------------------------------
+
+Route::get('/dashboard', function () {
+    return redirect()->route('dashboard');
+});
+
+require __DIR__.'/auth.php';
+
 //-----------------------------------------------CUSTOMER---------------------------------------------------------------------
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\Customer\CustomerBlog;
@@ -48,9 +57,9 @@ use App\Http\Controllers\Admin\Pages\AdminHomeController;
 use App\Http\Controllers\Admin\Pages\AdminServicesController;
 use App\Http\Controllers\Admin\Pages\AdminAboutController;
 use App\Http\Controllers\Admin\Pages\AdminFooterController;
-Route::group(['prefix' => 'admin'], function()
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function()
 {
-    Route::get('dashboard', [AdminController::class, 'dashboard']);
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     //Pages
     Route::get('pages', [AdminController::class, 'pages']);
     Route::group(['prefix' => 'page'], function()
