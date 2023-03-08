@@ -1,0 +1,58 @@
+
+.btn-equipment {
+    font-family: bebas neue;
+    color: #fff;
+    background-color: #FFA600;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    font-size: 15pt !important;
+    font-weight: 400;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    padding: 8px 20px; 
+}
+    .btn-equipment:hover{
+    background-color: #FF69B4;
+}
+
+.col-sm-4{
+    /* background: linear-gradient(#FAFAFA, #FF69B4); */
+    padding: 30px;
+}
+  
+  .product-detail-wrap .product-desc {
+    display: block;
+    /*padding-right: 1em;*/ 
+}
+    .product-detail-wrap .product-desc h3 {
+      font-size: 50pt;
+      display: block;
+    color: #1A1A1A;
+    font-family: bebas neue;
+    font-size: 40pt;
+}
+.product-detail-wrap .product-desc .price {
+width: 100%;
+display: inline-block;
+font-weight: 400;
+font-size: 30pt;
+font-family: Montserrat;
+color: #FFA600;
+}
+.product-detail-wrap .product-desc .description{
+    font-family: Montserrat;
+    color: #1A1A1A;
+}
+
+.product-detail-wrap .product-desc .btn-addtocart i {
+    color: #fff;
+    font-size: 15pt;
+    padding-right: 10px; 
+}
