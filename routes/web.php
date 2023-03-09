@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 //-----------------------------------------------AUTHENTICATION---------------------------------------------------------------------
 
-Route::get('/dashboard', function () {
+Route::get('/admin', function () {
     return redirect()->route('dashboard');
 });
 
