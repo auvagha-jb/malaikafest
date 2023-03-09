@@ -216,8 +216,8 @@
                             <img src="{{ url('https://via.placeholder.com/80x80') }}" alt="">
                         </div>
                         <div class="info text-center">
-                            <p class="name font-weight-bold mb-0">Amiah Burton</p>
-                            <p class="email text-muted mb-3">amiahburton@gmail.com</p>
+                            <p class="name font-weight-bold mb-0">{{ auth()->user()->name }}</p>
+                            <p class="email text-muted mb-3">{{ auth()->user()->email }}</p>
                         </div>
                     </div>
                     <div class="dropdown-body">
