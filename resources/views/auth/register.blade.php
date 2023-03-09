@@ -8,8 +8,7 @@
                 <div class="card">
                     <div class="row">
                         <div class="col-md-4 pr-md-0">
-                            <div class="auth-left-wrapper" style="background-image: url({{ url('https://via.placeholder.com/219x452') }})">
-
+                            <div class="auth-left-wrapper bg-primary">
                             </div>
                         </div>
                         <div class="col-md-8 pl-md-0">
