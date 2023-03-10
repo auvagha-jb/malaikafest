@@ -17,7 +17,7 @@ class CustomerEvent extends Controller
             ->join('event_categories', 'events.eventCategory', "=", 'event_categories.eventCategoryID')
             ->get();
 
-        return view('customer.events.index', ['events' => $events]);
+        return view('Customer.events.index', ['events' => $events]);
     }
 
     public function filterByCategory($eventCategory)
@@ -28,13 +28,13 @@ class CustomerEvent extends Controller
             ->join('event_categories', 'events.eventCategory', "=", 'event_categories.eventCategoryID')
             ->get();
 
-        return view('customer.events.index', ['events' => $events]);
+        return view('Customer.events.index', ['events' => $events]);
     }
 
     public function show($eventID)
     {
         $event = Events::findOrFail($eventID);
         $eventDescription = htmlspecialchars($event->eventDescription);
-        return view('customer.events.show', ['event' => $event], compact('eventDescription'));
+        return view('Customer.events.show', ['event' => $event], compact('eventDescription'));
     }
 }

@@ -44,7 +44,7 @@ class CustomerBlog extends Controller
             ->join('blog_categories', 'blogs.blogCategory', "=", 'blog_categories.blogCategoryID')
             ->get();
 
-        return view('customer.blog.dashboard', ['blogs1' => $blogs1, 'blogs2' => $blogs2, 'blogs3' => $blogs3, 'blogs4' => $blogs4]);
+        return view('Customer.blog.dashboard', ['blogs1' => $blogs1, 'blogs2' => $blogs2, 'blogs3' => $blogs3, 'blogs4' => $blogs4]);
     }
 
     public function indexBlogs()
@@ -58,7 +58,7 @@ class CustomerBlog extends Controller
             ->get();
 
         $categories = Blogcategories::where('isDeleted', '0')->get();
-        return view('customer.blog.index-blogs', ['blogs' => $blogs], ['categories' => $categories]);
+        return view('Customer.blog.index-blogs', ['blogs' => $blogs], ['categories' => $categories]);
     }
 
     public function filterBlogs($categoryID)
@@ -73,7 +73,7 @@ class CustomerBlog extends Controller
             ->get();
 
         $categories = Blogcategories::where('isDeleted', '0')->get();
-        return view('customer.blog.index-blogs', ['blogs' => $blogs], ['categories' => $categories]);
+        return view('Customer.blog.index-blogs', ['blogs' => $blogs], ['categories' => $categories]);
     }
 
     public function showBlogs($blogID)
@@ -96,7 +96,7 @@ class CustomerBlog extends Controller
             ->join('blog_categories', 'blogs.blogCategory', "=", 'blog_categories.blogCategoryID')
             ->get();
 
-        return view('customer.blog.show-blog', ['blog' => $blog, 'comments' => $comments, 'recommendations' => $recommendations], compact('blogText'));
+        return view('Customer.blog.show-blog', ['blog' => $blog, 'comments' => $comments, 'recommendations' => $recommendations], compact('blogText'));
     }
 
     public function addComment()

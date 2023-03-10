@@ -35,7 +35,7 @@ class CustomerController extends Controller
             ->where('isDeleted', 0)
             ->get();
         return view(
-            'customer.landingpg',
+            'Customer.landingpg',
             [
                 'events' => $events,
                 'recommendations' => $recommendations,
@@ -49,17 +49,17 @@ class CustomerController extends Controller
     {
         $aboutUs = AboutUs::first(); //This will pick the 1 row for AboutUs.
         $team = AboutTeam::where('isDeleted', 0)->get();
-        return view('customer.about', ['aboutus' => $aboutUs, 'team' => $team]);
+        return view('Customer.about', ['aboutus' => $aboutUs, 'team' => $team]);
     }
 
     public function services()
     {
         $services = ServicesPage::where('isDeleted', 0)->get();
-        return view('customer.services', ['services' => $services]);
+        return view('Customer.services', ['services' => $services]);
     }
 
     public function contact()
     {
-        return view('customer.contact');
+        return view('Customer.contact');
     }
 }
