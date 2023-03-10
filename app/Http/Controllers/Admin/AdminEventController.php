@@ -13,12 +13,12 @@ class AdminEventController extends Controller
     public function indexCategories()
     {
         $categories = Eventcategories::where('isDeleted', '0')->get();
-        return view('admin.page-categories.index-categories', ['categories' => $categories]);
+        return view('Admin.page-categories.index-categories', ['categories' => $categories]);
     }
 
     public function createCategory()
     {
-        return view('admin.page-categories.add-category');
+        return view('Admin.page-categories.add-category');
     }
 
     public function addCategory()
@@ -42,28 +42,28 @@ class AdminEventController extends Controller
     public function indexEvent()
     {
         $events = Events::where('isDeleted', '0')->get();
-        return view('admin.events.index-events', ['events' => $events]);
+        return view('Admin.events.index-events', ['events' => $events]);
     }
 
     public function showEvent($eventID)
     {
         $event = Events::findOrFail($eventID);
-        $eventDescription = htmlspecialchars($event -> eventDescription);
-        return view('admin.events.show-event', ['event' => $event], compact('eventDescription'));
+        $eventDescription = htmlspecialchars($event->eventDescription);
+        return view('Admin.events.show-event', ['event' => $event], compact('eventDescription'));
     }
 
     public function createEvent()
     {
         $categories = Eventcategories::where('isDeleted', '0')->get();
-        return view('admin.events.create-event', ['categories' => $categories]);
+        return view('Admin.events.create-event', ['categories' => $categories]);
     }
 
     public function addEvent()
     {
-        $newImageName = time(). '-' . request('eventCategory') . '.' . request('posterImg')->extension(); //renames the image
+        $newImageName = time() . '-' . request('eventCategory') . '.' . request('posterImg')->extension(); //renames the image
 
-        // $image = Image::make($request->file('image'))->resize(null, 300, 
-        // function ($constraint) 
+        // $image = Image::make($request->file('image'))->resize(null, 300,
+        // function ($constraint)
         // {
         //     $constraint->aspectRatio();
         // });
@@ -80,7 +80,7 @@ class AdminEventController extends Controller
         $event->location = request('location');
         $event->ticketPrice = request('ticketPrice');
         $event->eventDescription = request('eventDescription');
-        $event->posterImg= $newImageName;
+        $event->posterImg = $newImageName;
         $event->save();
         return redirect('/admin/events');
     }
@@ -90,16 +90,15 @@ class AdminEventController extends Controller
         $categories = Eventcategories::where('isDeleted', '0')->get();
 
         $event = Events::findOrFail($eventID);
-        return view('admin.events.edit-event', ['event' => $event], ['categories' => $categories]);
+        return view('Admin.events.edit-event', ['event' => $event], ['categories' => $categories]);
     }
 
     public function store($eventID)
     {
         $event = Events::findOrFail($eventID);
         $img = request('posterImg');
-        if(isset($img))
-        {
-            $newImageName = time(). '-'. $eventID . '-' . request('eventCategory') . '.' . $img->extension();
+        if (isset($img)) {
+            $newImageName = time() . '-' . $eventID . '-' . request('eventCategory') . '.' . $img->extension();
             $img->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
             $event->posterImg = $newImageName;
         }
@@ -123,6 +122,5 @@ class AdminEventController extends Controller
         $event->isDeleted = request('isDeleted');
         $event->save();
         return redirect('/admin/events');
-
     }
 }

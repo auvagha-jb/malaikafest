@@ -9,15 +9,15 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        return view('Admin.dashboard');
     }
     public function pages()
     {
-        return view('admin.pages.index');
+        return view('Admin.pages.index');
     }
 
     public function contact()
     {
-        return view('admin.pages.contact.index');
+        return view('Admin.pages.contact.index');
     }
 }

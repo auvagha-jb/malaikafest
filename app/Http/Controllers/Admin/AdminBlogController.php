@@ -12,25 +12,25 @@ class AdminBlogController extends Controller
     public function indexBlogs()
     {
         $blogs = Blogs::where('isDeleted', '0')->get();
-        return view('admin.blogs.index-blog', ['blogs' => $blogs]);
+        return view('Admin.blogs.index-blog', ['blogs' => $blogs]);
     }
 
     public function showBlog($blogID)
     {
         $blog = Blogs::findOrFail($blogID);
-        $blogText = htmlspecialchars($blog -> blogText);
-        return view('admin.blogs.show-blog', ['blog' => $blog], compact('blogText'));
+        $blogText = htmlspecialchars($blog->blogText);
+        return view('Admin.blogs.show-blog', ['blog' => $blog], compact('blogText'));
     }
 
     public function createBlog()
     {
         $categories = Blogcategories::where('isDeleted', '0')->get();
-        return view('admin.blogs.create-blog', ['categories' => $categories]);
+        return view('Admin.blogs.create-blog', ['categories' => $categories]);
     }
 
     public function addBlog()
     {
-        $newImageName = time(). '-' . request('blogCategory') . '.' . request('blogImg')->extension(); //renames the image
+        $newImageName = time() . '-' . request('blogCategory') . '.' . request('blogImg')->extension(); //renames the image
         request('blogImg')->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
 
         $blog = new Blogs();
@@ -38,7 +38,7 @@ class AdminBlogController extends Controller
         $blog->blogCategory = request('blogCategory');
         $blog->blogText = request('blogText');
         $blog->blogQuote = request('blogQuote');
-        $blog->blogImg= $newImageName;
+        $blog->blogImg = $newImageName;
         $blog->save();
         return redirect('/admin/blogs');
     }
@@ -47,16 +47,15 @@ class AdminBlogController extends Controller
     {
         $categories = Blogcategories::where('isDeleted', '0')->get();
         $blog = Blogs::findOrFail($blogID);
-        return view('admin.blogs.edit-blog', ['blog' => $blog], ['categories' => $categories]);
+        return view('Admin.blogs.edit-blog', ['blog' => $blog], ['categories' => $categories]);
     }
 
     public function store($blogID)
     {
         $blog = Blogs::findOrFail($blogID);
         $img = request('blogImg');
-        if(isset($img))
-        {
-            $newImageName = time(). '-'. $blogID . '-' . request('blogCategory') . '.' . $img->extension();
+        if (isset($img)) {
+            $newImageName = time() . '-' . $blogID . '-' . request('blogCategory') . '.' . $img->extension();
             $img->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
             $blog->blogImg = $newImageName;
         }
@@ -80,12 +79,12 @@ class AdminBlogController extends Controller
     public function indexCategories()
     {
         $categories = Blogcategories::where('isDeleted', '0')->get();
-        return view('admin.blogs.index-categories', ['categories' => $categories]);
+        return view('Admin.blogs.index-categories', ['categories' => $categories]);
     }
-    
+
     public function createCategory()
     {
-        return view('admin.blogs.add-category');
+        return view('Admin.blogs.add-category');
     }
 
     public function addCategory()
@@ -106,5 +105,4 @@ class AdminBlogController extends Controller
 
         // error_log(request('isDeleted'));
     }
-
 }

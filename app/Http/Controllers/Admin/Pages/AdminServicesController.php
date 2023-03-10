@@ -11,8 +11,8 @@ class AdminServicesController extends Controller
     public function index()
     {
         $services = ServicesPage::where('isDeleted', 0)
-        ->get();
-        return view('admin.pages.services.index', ['services' => $services]);
+            ->get();
+        return view('Admin.pages.services.index', ['services' => $services]);
     }
 
     public function remove($serviceID)
@@ -25,7 +25,7 @@ class AdminServicesController extends Controller
 
     public function create()
     {
-        return view('admin.pages.services.create');
+        return view('Admin.pages.services.create');
     }
 
     public function add()
@@ -40,7 +40,7 @@ class AdminServicesController extends Controller
     public function edit($serviceID)
     {
         $service = ServicesPage::findOrFail($serviceID);
-        return view('admin.pages.services.edit', ['service' => $service]);
+        return view('Admin.pages.services.edit', ['service' => $service]);
     }
 
     public function store($serviceID)

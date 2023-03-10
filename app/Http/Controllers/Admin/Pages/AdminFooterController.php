@@ -11,13 +11,13 @@ class AdminFooterController extends Controller
     public function index()
     {
         $footer = Footer::first(); //This will pick the 1 row for footer.
-        return view('admin.pages.footer.index', ['footer' => $footer]);
+        return view('Admin.pages.footer.index', ['footer' => $footer]);
     }
 
     public function edit()
     {
         $footer = Footer::first(); //This will pick the 1 row for footer.
-        return view('admin.pages.footer.edit', ['footer' => $footer]);
+        return view('Admin.pages.footer.edit', ['footer' => $footer]);
     }
 
     public function store()

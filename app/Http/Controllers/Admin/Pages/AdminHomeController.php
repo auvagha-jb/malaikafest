@@ -13,22 +13,21 @@ class AdminHomeController extends Controller
     {
         $intro = HomeIntro::first(); //This will pick the 1 row for intro.
         $testimonials = HomeTestimonials::where('isDeleted', 0)->get();
-        return view('admin.pages.home.index', ['intro' => $intro, 'testimonials' => $testimonials]);
+        return view('Admin.pages.home.index', ['intro' => $intro, 'testimonials' => $testimonials]);
     }
 
     public function editIntro()
     {
         $intro = HomeIntro::first(); //This will pick the 1 row for intro.
-        return view('admin.pages.home.edit', ['intro' => $intro]);
+        return view('Admin.pages.home.edit', ['intro' => $intro]);
     }
 
     public function storeIntro()
     {
         $intro = HomeIntro::findOrFail(1);
         $img = request('homeImg');
-        if(isset($img))
-        {
-            $newImageName = time(). '.' . request('homeImg')->extension(); //renames the image
+        if (isset($img)) {
+            $newImageName = time() . '.' . request('homeImg')->extension(); //renames the image
             request('homeImg')->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
             $intro->img = $newImageName;
         }
@@ -49,12 +48,12 @@ class AdminHomeController extends Controller
 
     public function create()
     {
-        return view('admin.pages.home.testimonials.create');
+        return view('Admin.pages.home.testimonials.create');
     }
 
     public function add()
     {
-        $newImageName = time(). '-' . request('fullname') . '.' . request('img')->extension(); //renames the image
+        $newImageName = time() . '-' . request('fullname') . '.' . request('img')->extension(); //renames the image
         request('img')->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
 
         $testimonial = new HomeTestimonials();
@@ -70,16 +69,15 @@ class AdminHomeController extends Controller
     public function editTestimonial($testimonialID)
     {
         $testimonial = HomeTestimonials::findOrFail($testimonialID);
-        return view('admin.pages.home.testimonials.edit', ['testimonial' => $testimonial]);
+        return view('Admin.pages.home.testimonials.edit', ['testimonial' => $testimonial]);
     }
-    
+
     public function storeTestimonial($testimonialID)
     {
         $testimonial = HomeTestimonials::findOrFail($testimonialID);
         $img = request('img');
-        if(isset($img))
-        {
-            $newImageName = time(). '-' . request('fullname') . '.' . request('img')->extension(); //renames the image
+        if (isset($img)) {
+            $newImageName = time() . '-' . request('fullname') . '.' . request('img')->extension(); //renames the image
             request('img')->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
             $testimonial->img = $newImageName;
         }

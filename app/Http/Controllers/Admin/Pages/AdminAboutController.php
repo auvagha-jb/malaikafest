@@ -13,22 +13,21 @@ class AdminAboutController extends Controller
     {
         $aboutUs = AboutUs::first(); //This will pick the 1 row for AboutUs.
         $team = AboutTeam::where('isDeleted', 0)->get();
-        return view('admin.pages.about.index', ['aboutus' => $aboutUs, 'team' => $team]);
+        return view('Admin.pages.about.index', ['aboutus' => $aboutUs, 'team' => $team]);
     }
 
     public function editAbout()
     {
         $aboutUs = AboutUs::first(); //This will pick the 1 row for AboutUs.
-        return view('admin.pages.about.edit', ['aboutus' => $aboutUs]);
+        return view('Admin.pages.about.edit', ['aboutus' => $aboutUs]);
     }
 
     public function storeAbout()
     {
         $aboutUs = AboutUs::findOrFail(1);
         $img = request('aboutImg');
-        if(isset($img))
-        {
-            $newImageName = time(). '-' . request('aboutImg')->extension(); //renames the image
+        if (isset($img)) {
+            $newImageName = time() . '-' . request('aboutImg')->extension(); //renames the image
             request('aboutImg')->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
             $aboutUs->img = $newImageName;
         }
@@ -49,12 +48,12 @@ class AdminAboutController extends Controller
 
     public function create()
     {
-        return view('admin.pages.about.team.create');
+        return view('Admin.pages.about.team.create');
     }
 
     public function add()
     {
-        $newImageName = time(). '-' . request('fullname') . '.' . request('memberImg')->extension(); //renames the image
+        $newImageName = time() . '-' . request('fullname') . '.' . request('memberImg')->extension(); //renames the image
         request('memberImg')->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
 
         $member = new AboutTeam();
@@ -70,16 +69,15 @@ class AdminAboutController extends Controller
     public function editMember($memberID)
     {
         $member = AboutTeam::findOrFail($memberID);
-        return view('admin.pages.about.team.edit', ['member' => $member]);
+        return view('Admin.pages.about.team.edit', ['member' => $member]);
     }
-    
+
     public function storeMember($memberID)
     {
         $member = AboutTeam::findOrFail($memberID);
         $img = request('memberImg');
-        if(isset($img))
-        {
-            $newImageName = time(). '-' . request('fullname') . '.' . request('memberImg')->extension(); //renames the image
+        if (isset($img)) {
+            $newImageName = time() . '-' . request('fullname') . '.' . request('memberImg')->extension(); //renames the image
             request('memberImg')->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
             $member->memberImg = $newImageName;
         }
