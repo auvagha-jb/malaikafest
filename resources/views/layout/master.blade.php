@@ -40,13 +40,13 @@ License: You must have a valid license purchased only from https://themeforest.n
     <script src="{{ asset('assets/js/spinner.js') }}"></script>
 
     <div class="main-wrapper" id="app">
-        @include('layout.admin.sidebar')
+        @include('layout.Admin.sidebar')
         <div class="page-wrapper">
-            @include('layout.admin.header')
+            @include('layout.Admin.header')
             <div class="page-content">
                 @yield('content')
             </div>
-            @include('layout.admin.footer')
+            @include('layout.Admin.footer')
         </div>
     </div>
 
