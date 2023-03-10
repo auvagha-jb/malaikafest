@@ -21,33 +21,35 @@ class CustomerController extends Controller
         $intro = HomeIntro::first();
 
         //UPCOMING EVENTS
-        $events = Events::orderBy('Events.created_at', 'desc')->take(5)
-        ->where('Events.isDeleted', 0)
-        //Join the Event and Event categories table to get the name of the categories
-        ->join('event_categories', 'Events.eventCategory', "=", 'event_categories.eventCategoryID')
-        ->get();
+        $events = Events::orderBy('events.created_at', 'desc')->take(5)
+            ->where('events.isDeleted', 0)
+            //Join the Event and Event categories table to get the name of the categories
+            ->join('event_categories', 'events.eventCategory', "=", 'event_categories.eventCategoryID')
+            ->get();
 
         //TESTIMONIALS
         $testimonials = HomeTestimonials::where('isDeleted', 0)->get();
 
         //RECOMMENDED BLOGS
         $recommendations = Blogs::orderBy('created_at', 'desc')->take(3)
-        ->where('isDeleted', 0)
-        ->get();
-        return view('customer.landingpg', 
-        [
-            'events' => $events, 
-            'recommendations' => $recommendations,
-            'testimonials' => $testimonials,
-            'intro' => $intro
-        ]);
+            ->where('isDeleted', 0)
+            ->get();
+        return view(
+            'customer.landingpg',
+            [
+                'events' => $events,
+                'recommendations' => $recommendations,
+                'testimonials' => $testimonials,
+                'intro' => $intro
+            ]
+        );
     }
 
     public function about()
     {
         $aboutUs = AboutUs::first(); //This will pick the 1 row for AboutUs.
         $team = AboutTeam::where('isDeleted', 0)->get();
-        return view('customer.about', ['aboutus' => $aboutUs, 'team' => $team] );
+        return view('customer.about', ['aboutus' => $aboutUs, 'team' => $team]);
     }
 
     public function services()
